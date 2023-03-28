@@ -21,28 +21,27 @@ export function App() {
     getImagesFromPixabay(query, page)
       .then(images => {
         setImgArr(prevState => [...prevState, ...images.hits])
-        setTotalHits(images.totalHits) 
+        setTotalHits(images.totalHits)
         setIsPending(false)})
       .catch(err => {
-        setIsPending(false) 
+        setIsPending(false)
         setErorr(err)})
 
   }, [query, page])
 
-  const handleInputValue = (inputValue) => {
+const handleInputValue = (inputValue) => {
     setQuery(inputValue)
     setPage(1)
     setImgArr([])
-    }
+}
 
   const onloadMoreClick = () => setPage(prevPage => prevPage + 1);
-  const isBtnShown =  Boolean(imgArr.length) && !(totalHits <= page * 12);
+  const isBtnShown =  !!imgArr.length && !(totalHits <= page * 12);
 
   return (
     <Container>
       <Searchbar handleInputValue={handleInputValue}/>
-      {isPending && <Loader/>}
-      {!isPending && <ImageGallery images={imgArr}/>}        
+      {!isPending ?<ImageGallery images={imgArr}/> : <Loader/> }
       {isBtnShown && <Button loadMore={onloadMoreClick}/>}
       {error && Notify.failure(error.message)}
     </Container>
