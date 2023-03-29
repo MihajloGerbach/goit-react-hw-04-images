@@ -6,6 +6,12 @@ export function Button({loadMore}) {
         <ButtonMore type="button" onClick={()=> loadMore()}>Load more</ButtonMore>)
 }
 
+
 Button.propTypes = {
     loadMore: PropTypes.func.isRequired
+    
 }
+
+
+
+

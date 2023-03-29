@@ -29,11 +29,13 @@ export function App() {
 
   }, [query, page])
 
-const handleInputValue = (inputValue) => {
-    setQuery(inputValue)
-    setPage(1)
-    setImgArr([])
-}
+  const handleInputValue = (inputValue) => {
+      setQuery(inputValue)
+      setPage(1)
+      if(inputValue !== query) {
+        setImgArr([])
+      }
+  }
 
   const onloadMoreClick = () => setPage(prevPage => prevPage + 1);
   const isBtnShown =  !!imgArr.length && !(totalHits <= page * 12);

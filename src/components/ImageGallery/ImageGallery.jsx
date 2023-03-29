@@ -5,8 +5,8 @@ import { ImageGalleryItem } from '../ImageGalleryItem/ImageGalleryItem';
 export function ImageGallery ({images}) {
     return (
         <ImageGalleryList>
-            {images.map(({id, tags, webformatURL, largeImageURL}) => {
-                return  <ImageGalleryItem id={id} tags={tags} webformatURL={webformatURL} largeImageURL={largeImageURL}/>
+            {images.map(({id, tags, webformatURL, largeImageURL}, idItem) => {
+                return  <ImageGalleryItem key={idItem} id={id} tags={tags} webformatURL={webformatURL} largeImageURL={largeImageURL}/>
             })}
         </ImageGalleryList>
     )
